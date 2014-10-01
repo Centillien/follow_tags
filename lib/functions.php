@@ -1,6 +1,6 @@
 <?php
 /**
- *  Follow Tag Libary
+ *  Follow Tag Libary Elgg 1.9.x
  *
  */
 
@@ -52,7 +52,7 @@ function follow_tags_create_follow_tag_object() {
  *
  */
 function follow_tags_save_follow_tags($input, $id, $notify) {
-	// Get FollowTagObject and Clear all Tag Relationships
+	// Get FollowTagObject and Delete all Tag Relationships
 	$user = elgg_get_logged_in_user_entity();
 	$access_id = get_default_access($user);
 
@@ -60,7 +60,7 @@ function follow_tags_save_follow_tags($input, $id, $notify) {
 	
 	if( $followTags->getSubtype() == 'FollowTags' ) {
 	
-		$followTags->clearRelationships();
+		$followTags->deleteRelationships();
 		$followTags->description =$input;
 		$followTags->title = $user->name;
 		$followTags->access_id = $access_id;
@@ -159,7 +159,7 @@ function follow_tags_notify($event, $type, $object) {
 
 	if ($access != '0') {
 		//Get all tags from created Object
-		$tags = get_metadata_byname ($object->guid,'tags');
+		$tags = elgg_get_metadata (array($object->guid,'tags'));
 
 		//Check the number of tags and handle 0 and 1 tags
 		switch (count($tags)) {
@@ -326,7 +326,7 @@ function follow_tags_get_all_tags($limit) {
 function follow_tags_get_activity_follow_tags($options){
 	
 	$dbprefix = elgg_get_config("dbprefix");
-	$tags = get_metadata_byname (follow_tags_get_tag_guid(elgg_get_logged_in_user_guid()),'tags');
+	$tags = elgg_get_metadata (array(follow_tags_get_tag_guid(elgg_get_logged_in_user_guid()),'tags'));
 	$cnt = 0;
 
 	//Count the followTags and Create string for the SQL-query
