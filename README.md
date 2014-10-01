@@ -1,4 +1,4 @@
-# Follow Tags for Elgg 1.8
+# Follow Tags for Elgg 1.9.x 
 
 This plugin allow users to follow tags. Users can select any tag which is filtered and displayed in the Activity Stream. The user is notified when new content is matching.
 
@@ -8,7 +8,7 @@ This plugin allow users to follow tags. Users can select any tag which is filter
 * Input-fields with user friendly autocompletion
 * User-notification for new matched content
 * Language support en, de included
-* Tested on version Elgg 1.8.16
+* Tested on version Elgg 1.9.2
 
 ## Installation
 
