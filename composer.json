@@ -1,0 +1,9 @@
+{
+  "name": "centillien/follow_tags",
+  "description": "Improved Tags functionality for Elgg.",
+  "type": "elgg-plugin",
+  "keywords": [
+    "elgg",
+    "plugin"
+  ]
+}
