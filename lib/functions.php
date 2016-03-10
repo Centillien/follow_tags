@@ -293,31 +293,27 @@ function follow_tags_get_all_tags($limit) {
 		'limit' => $limit,
 		'threshold' => $threshold,
         'tag_name' => 'tags',
-		);
+	);
 		
 	$tags = elgg_get_tags($options);
-	
-	
+	$json = array();
+
 	foreach ($tags as $tag) {
-		$json[]=$tag->tag;
+		$json[] = $tag->tag;
 	}
 		
-	$deftags = elgg_get_plugin_setting("defaultTags", "follow_tags");
-	
-	if (!empty($deftags)) {
-     
-     $deftags = explode(",",$deftags);
-	 $json = array_merge($deftags,$json);
-	 
+	$defaultTags = elgg_get_plugin_setting("defaultTags", "follow_tags");
+
+	if (!empty($defaultTags)) {
+		$defaultTags = explode(',', $defaultTags);
+		$json = array_merge($defaultTags, $json);
 	}
 
-	if ($json) {
+	if (is_array($json)) {
 		$json = json_encode($json);
 	}else {
-	  $json = "[]";
+	  	$json = '[]';
 	}
-	
-	
 	
 	return $json;
 }
