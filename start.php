@@ -64,8 +64,9 @@ function follow_tags_init() {
 	elgg_extend_view('js/elgg','js/follow_tags/site');
 	 
 	// Run the followtags_notofy function in event is triggerd
-	elgg_register_event_handler('create', 'object', 'follow_tags_notify', 501);
-	
+	if (elgg_is_logged_in()) {
+		elgg_register_event_handler('create', 'object', 'follow_tags_notify', 501);
+	}
 }
 
 function follow_tags_data_page_handler() {
